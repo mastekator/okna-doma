@@ -118,7 +118,7 @@ if ('Отключаем Emojis в WordPress') {
      * Filter function used to remove the tinymce emoji plugin.
      *
      * @param array $plugins
-     * @return   array             Difference betwen the two arrays
+     * @return  array Difference between the two arrays
      */
     function disable_emojis_tinymce($plugins)
     {
@@ -139,7 +139,7 @@ if ('Отключаем Emojis в WordPress') {
     function disable_emojis_remove_dns_prefetch($urls, $relation_type)
     {
 
-        if ('dns-prefetch' == $relation_type) {
+        if ('dns-prefetch' === $relation_type) {
 
             // Strip out any URLs referencing the WordPress.org emoji location
             $emoji_svg_url_bit = 'https://s.w.org/images/core/emoji/';
@@ -199,7 +199,6 @@ function header_add_to_cart_fragment($fragments)
 add_filter('woocommerce_product_single_add_to_cart_text', 'woocust_change_label_button_add_to_cart_single');
 function woocust_change_label_button_add_to_cart_single($label)
 {
-
     $label = 'Добавить в корзину';
 
     return $label;
@@ -214,15 +213,14 @@ add_filter('woocommerce_checkout_fields', 'new_woocommerce_checkout_fields', 10,
 function new_woocommerce_checkout_fields($fields)
 {
     if (!WC()->cart->needs_shipping()) {
-        unset($fields['billing']['billing_address_1']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_address_2']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_city']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_postcode']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_country']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_state']); //удаляем Населённый пункт
-        unset($fields['billing']['billing_company']); //удаляем Населённый пункт
-        unset($fields['billing']['phone']); //удаляем Населённый пункт
-
+        unset($fields['billing']['billing_address_1'],
+            $fields['billing']['billing_address_2'],
+            $fields['billing']['billing_city'],
+            $fields['billing']['billing_postcode'],
+            $fields['billing']['billing_country'],
+            $fields['billing']['billing_state'],
+            $fields['billing']['billing_company'],
+            $fields['billing']['phone']);
     }
     return $fields;
 }
@@ -237,10 +235,9 @@ add_filter('woocommerce_product_tabs', 'woo_remove_product_tabs', 98);
 function woo_remove_product_tabs($tabs)
 {
 
-    unset($tabs['description']);        // Remove the description tab
-    unset($tabs['reviews']);            // Remove the reviews tab
-    unset($tabs['additional_information']);    // Remove the additional information tab
-
+    unset($tabs['description'],
+        $tabs['reviews'],
+        $tabs['additional_information']);
     return $tabs;
 }
 
@@ -326,4 +323,3 @@ function jk_related_products_args($args)
     $args['columns'] = 4; // количество колонок
     return $args;
 }
-
