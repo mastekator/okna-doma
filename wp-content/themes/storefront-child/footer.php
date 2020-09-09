@@ -91,6 +91,9 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
+<script>
+    $('.inc-reaction').rippleEffect()
+</script>
 
 </body>
 </html>

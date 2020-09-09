@@ -16,6 +16,7 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <?php wp_head(); ?>
+    <link rel="stylesheet" href="/wp-content/themes/storefront-child/inc/assets/css/swiper.min.css">
 </head>
 
 <body <?php body_class(); ?>>
@@ -25,63 +26,77 @@
 <div id="page" class="hfeed site">
     <?php do_action('storefront_before_header'); ?>
 
-    <header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
+    <div class="header-wrapper">
+        <header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
 
-        <div class="container">
-            <nav class="navbar navbar-dark navbar-expand-xl p-0 justify-content-between">
-                <div class="navbar-brand">
-                    <a href="<?php echo esc_url(home_url('/')); ?>">
-                        <img src="/wp-content/themes/storefront-child/svg/header-okna.svg"
-                             alt="<?= esc_attr(get_bloginfo('name')) ?>">
-                    </a>
-                </div>
+            <div class="container">
+                <nav class="navbar navbar-dark navbar-expand-xl p-0 justify-content-between">
+                    <div class="navbar-brand">
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img src="/wp-content/themes/storefront-child/svg/header-okna.svg"
+                                 alt="<?= esc_attr(get_bloginfo('name')) ?>">
+                        </a>
+                    </div>
 
-                <div class="d-flex">
-                    <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'container' => 'div',
-                        'container_id' => '',
-                        'container_class' => 'collapse navbar-collapse justify-content-end mr-5',
-                        'menu_id' => false,
-                        'menu_class' => 'navbar-nav',
-                        'depth' => 3,
-                        'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-                        'walker' => new wp_bootstrap_navwalker()
-                    ));
-                    ?>
+                    <div class="d-flex">
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'primary',
+                            'container' => 'div',
+                            'container_id' => '',
+                            'container_class' => 'collapse navbar-collapse justify-content-end mr-5',
+                            'menu_id' => false,
+                            'menu_class' => 'navbar-nav',
+                            'depth' => 3,
+                            'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
+                            'walker' => new wp_bootstrap_navwalker()
+                        ));
+                        ?>
 
-                    <div class="outer-menu">
-                        <button class="navbar-toggler position-relative" type="button" style="z-index: 1">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <input class="checkbox-toggle" data-toggle="collapse" data-target="#main-nav"
-                               aria-controls="" aria-expanded="false" aria-label="Toggle navigation" type="checkbox"/>
-                        <div class="menu">
-                            <div>
-                                <div class="border-header">
-                                    <?php
-                                    wp_nav_menu(array(
-                                        'theme_location' => 'primary',
-                                        'container' => 'div',
-                                        'container_id' => 'main-nav',
-                                        'container_class' => 'collapse navbar-collapse justify-content-end',
-                                        'menu_id' => false,
-                                        'menu_class' => 'navbar-nav',
-                                        'depth' => 3,
-                                        'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
-                                        'walker' => new wp_bootstrap_navwalker()
-                                    ));
-                                    ?>
+                        <div class="outer-menu">
+                            <button class="navbar-toggler position-relative" type="button" style="z-index: 1">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <input class="checkbox-toggle" data-toggle="collapse" data-target="#main-nav"
+                                   aria-controls="" aria-expanded="false" aria-label="Toggle navigation"
+                                   type="checkbox"/>
+                            <div class="menu">
+                                <div>
+                                    <div class="border-header">
+                                        <?php
+                                        wp_nav_menu(array(
+                                            'theme_location' => 'primary',
+                                            'container' => 'div',
+                                            'container_id' => 'main-nav',
+                                            'container_class' => 'collapse navbar-collapse justify-content-end',
+                                            'menu_id' => false,
+                                            'menu_class' => 'navbar-nav',
+                                            'depth' => 3,
+                                            'fallback_cb' => 'wp_bootstrap_navwalker::fallback',
+                                            'walker' => new wp_bootstrap_navwalker()
+                                        ));
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </nav>
-        </div>
+                </nav>
+            </div>
 
-    </header><!-- #masthead -->
+        </header><!-- #masthead -->
+
+        <div class="container header-wrapper__container">
+            <h1 class="header-wrapper__title">Замеры на <strong>следующий день*</strong> после заявки</h1>
+            <button class="btn btn-okna-primary inc-reaction">
+                Оставить заявку
+            </button>
+            <p class="header-wrapper__small">
+                *Дата замеров может отличаться в зависимости от расположения относительно офиса
+            </p>
+        </div>
+    </div>
+
 
     <?php
     /**
