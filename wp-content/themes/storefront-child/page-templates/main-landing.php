@@ -103,7 +103,7 @@ Template Post Type: post, page, product
 <section class="okna-services">
     <div class="container">
         <h2 class="okna-header okna-services__header">
-            Наши преимущества
+            Наши услуги
         </h2>
 
         <div class="card-service">
@@ -184,7 +184,7 @@ Template Post Type: post, page, product
             Наши проекты
         </h2>
 
-        <div class="swiper-container">
+        <div class="swiper-container okna-projects__swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="card-project">
@@ -250,9 +250,73 @@ Template Post Type: post, page, product
 
     </div>
     <script>
-        const swiper = new Swiper('.swiper-container', {
+        const oknaProjects = new Swiper('.okna-projects__swiper', {
             pagination: {
                 el: '.swiper-pagination',
+            },
+        });
+    </script>
+</section>
+
+<section class="okna-trust">
+    <div class="container">
+        <h2 class="okna-header okna-trust__header">
+            Наши доверяют
+        </h2>
+
+        <div class="swiper-container okna-trust__swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card-trust">
+                        <div class="card-trust__icon">
+                            <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                        </div>
+                        <p class="card-trust__title">
+                            Название проекта
+                        </p>
+                        <p class="card-trust__info okna-text">
+                            Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-trust">
+                        <div class="card-trust__icon">
+                            <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                        </div>
+                        <p class="card-trust__title">
+                            Название проекта
+                        </p>
+                        <p class="card-trust__info okna-text">
+                            Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-trust">
+                        <div class="card-trust__icon">
+                            <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                        </div>
+                        <p class="card-trust__title">
+                            Название проекта
+                        </p>
+                        <p class="card-trust__info okna-text">
+                            Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+    <script>
+        const oknaTrust = new Swiper('.okna-trust__swiper', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
         });
     </script>
