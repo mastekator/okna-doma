@@ -81,18 +81,26 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                    $phone = get_field('phone', 14);
+                    if ($phone):?>
+                        <a class="site-header__phone" href="tel:<?= $phone ?>">
+                            <?= $phone ?>
+                        </a>
+                    <?php endif; ?>
                 </nav>
             </div>
 
         </header><!-- #masthead -->
 
         <div class="container header-wrapper__container">
-            <h1 class="header-wrapper__title">Замеры на <strong>следующий день*</strong> после заявки</h1>
-            <button class="btn btn-okna-primary inc-reaction">
+            <h1 class="header-wrapper__title"><?= get_field('main_text', 20) ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?></h1>
+            <button class="btn btn-okna-primary inc-reaction" data-title="Оформите заявку на замеры" data-toggle="modal"
+                    data-target="#orderModal">
                 Оставить заявку
             </button>
             <p class="header-wrapper__small">
-                *Дата замеров может отличаться в зависимости от расположения относительно офиса
+                <?= get_field('small_text', 20) ?: '*Дата замеров может отличаться в зависимости от расположения относительно офиса' ?>
             </p>
         </div>
     </div>

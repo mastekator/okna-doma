@@ -14,6 +14,41 @@
 
 <?php do_action('storefront_before_footer'); ?>
 
+<?php
+$phone = get_field('phone', 14);
+$email = get_field('email', 14);
+$fio_manager = get_field('fio_manager', 14);
+$photo_manager = get_field('photo_manager', 14);
+?>
+
+<div class="modal fade okna-modal" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title bottom-line" id="orderModalLabel">Оформите заявку на замеры</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1.43433" width="29.0843" height="2.02842" rx="1.01421" transform="rotate(45 1.43433 0)"
+                              fill="black"/>
+                        <rect width="29.0843" height="2.02842" rx="1.01421"
+                              transform="matrix(-0.707107 0.707107 0.707107 0.707107 20.5657 0)" fill="black"/>
+                    </svg>
+                </button>
+                <p class="okna-modal__text">
+                    Менеджер скоро с вами свяжется. Обычно это занимает не более 20 минут в зависимости от загруженности
+                    операторов
+                </p>
+                <div class="okna-modal__form">
+                    <input class="okna-input" name="phone" type="text">
+                    <button class="btn-okna-primary btn inc-reaction">
+                        Отправить заявку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="pre-footer">
     <div class="container">
         <div class="row">
@@ -28,7 +63,7 @@
                                           fill="#CECECE"/>
                                 </svg>
                             </a>
-                            <a href="#" class="pre-footer-phone__icon active">
+                            <a href="tel:<?= $phone ?>" class="pre-footer-phone__icon <?= $phone ? 'active' : '' ?>">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
@@ -42,7 +77,7 @@
                                           fill="#CECECE"/>
                                 </svg>
                             </a>
-                            <a href="#" class="pre-footer-phone__icon active">
+                            <a href="mailto:<?= $email ?>" class="pre-footer-phone__icon <?= $email ? 'active' : '' ?>">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
@@ -50,14 +85,18 @@
                                 </svg>
                             </a>
                         </div>
-                        <div class="pre-footer-phone__item">
-                            <p class="pre-footer-phone__title">Телефон</p>
-                            <a class="pre-footer-phone__link" href="#">+7 (999) 999-00-00</a>
-                        </div>
-                        <div class="pre-footer-phone__item">
-                            <p class="pre-footer-phone__title">Email</p>
-                            <a class="pre-footer-phone__link" href="#">example@example.ru</a>
-                        </div>
+                        <?php if ($phone): ?>
+                            <div class="pre-footer-phone__item">
+                                <p class="pre-footer-phone__title">Телефон</p>
+                                <a class="pre-footer-phone__link" href="tel:<?= $phone ?>"><?= $phone ?></a>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($email): ?>
+                            <div class="pre-footer-phone__item">
+                                <p class="pre-footer-phone__title">Email</p>
+                                <a class="pre-footer-phone__link" href="mailto:<?= $email ?>"><?= $email ?></a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -67,30 +106,42 @@
                         Остались вопросы
                     </p>
                     <div class="pre-footer-card">
-                        <img src="/wp-content/themes/storefront-child/img/placeholder.jpg" alt="">
+                        <?php if ($photo_manager): ?>
+                            <img src="<?= $photo_manager ?>"
+                                 alt="Менеджер по работе с клиентами">
+                        <?php else: ?>
+                            <img src="/wp-content/themes/storefront-child/img/placeholder.jpg"
+                                 alt="Менеджер по работе с клиентами">
+                        <?php endif; ?>
                         <div class="pre-footer-card__body">
                             <p class="pre-footer-card__title">
-                                Иванов Иван Иванович
+                                <?= $fio_manager ?>
                                 <small>Менеджер по работе с клиентами</small>
                             </p>
-                            <a class="pre-footer-card__link" href="#">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
-                                          fill="#4D6595"/>
-                                </svg>
-                                +7 (999) 999-99-99
-                            </a>
-                            <a class="pre-footer-card__link" href="#">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
-                                          fill="#4D6595"/>
-                                </svg>
-                                example@example.ru
-                            </a>
+                            <?php if ($phone): ?>
+                                <a class="pre-footer-card__link" href="tel:<?= $phone ?>">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
+                                              fill="#4D6595"/>
+                                    </svg>
+                                    <?= $phone ?>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($email): ?>
+                                <a class="pre-footer-card__link" href="mailto:<?= $email ?>">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+                                              fill="#4D6595"/>
+                                    </svg>
+                                    <?= $email ?>
+                                </a>
+                            <?php endif; ?>
                             <p class="pre-footer-card__or">или оставьте заявку</p>
-                            <button class="btn btn-okna-primary inc-reaction">
+                            <button class="btn btn-okna-primary inc-reaction"
+                                    data-title="Задайте ваш вопрос" data-toggle="modal"
+                                    data-target="#orderModal">
                                 Задайте вопрос
                             </button>
                         </div>
@@ -142,8 +193,12 @@
                 <div class="col-12 col-lg-3 pl-0">
                     <div class="footer-contacts">
                         <p>Наши контакты</p>
-                        <a href="#">+7 (999) 000-00-00 </a>
-                        <a href="#">example@mail.ru</a>
+                        <?php if ($phone): ?>
+                            <a href="tel:<?= $phone ?>"><?= $phone ?></a>
+                        <?php endif; ?>
+                        <?php if ($email): ?>
+                            <a href="mailto:<?= $email ?>"><?= $email ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -175,6 +230,13 @@
 
     </div><!-- .col-full -->
 </footer><!-- #colophon -->
+
+<script>
+    $('[data-toggle="modal"]').on('click', function () {
+        const text = $(this).data('title') || 'Оформите заявку на замеры'
+        $('#orderModal .modal-title').text(text)
+    })
+</script>
 
 <?php do_action('storefront_after_footer'); ?>
 
