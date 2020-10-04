@@ -323,3 +323,230 @@ function jk_related_products_args($args)
     $args['columns'] = 4; // количество колонок
     return $args;
 }
+
+/**
+ * Get projects posts by category id
+ * @param $cat_id
+ * @return false|string
+ */
+function get_projects($cat_id)
+{
+    $args = array(
+        'category' => $cat_id,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'numberposts' => 6
+    );
+    $projects = get_posts($args);
+    ob_start();
+    if ($projects): ?>
+        <section class="okna-projects">
+            <div class="container">
+                <h2 class="okna-header okna-projects__header">
+                    Наши проекты
+                </h2>
+
+                <div class="swiper-container okna-projects__swiper">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($projects as $project):
+                            $project_id = $project->ID;
+                            $link = get_permalink($project_id);
+                            $project_params = array_filter(explode(';', get_field('project_params', $project_id)));
+                            ?>
+                            <div class="swiper-slide">
+                                <div class="card-project">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-12">
+                                            <p class="card-project__title bottom-line"><?= $project->post_title ?></p>
+                                            <p class="card-project__info okna-text">
+                                                <?= mb_strimwidth($project->post_content, 0, 245, '...') ?>
+                                            </p>
+                                            <?php if ($project_params): ?>
+                                                <ul class="card-project__list">
+                                                    <?php foreach ($project_params as $project_param): ?>
+                                                        <li><?= $project_param ?></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                            <a href="<?= $link ?>" class="btn btn-okna-primary inc-reaction">
+                                                Посмотреть
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-7 col-12">
+                                            <a href="<?= $link ?>">
+                                                <img class="card-project__img"
+                                                     src="/wp-content/themes/storefront-child/img/project.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <script>
+                const oknaProjects = new Swiper('.okna-projects__swiper', {
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                });
+            </script>
+        </section>
+    <?php endif;
+    return ob_get_clean();
+}
+
+/**
+ * Get post or custom field gallery images
+ * @param null $postvar
+ * @param int $pos
+ * @param string $post_content
+ * @return array
+ */
+function get_post_gallery_or_custom_field($post_content = '', $postvar = NULL, $pos = 0)
+{
+    if (!isset($postvar)) {
+        global $post;
+        $postvar = $post;
+    }
+    if (!$post_content) {
+        $post_content = $postvar->post_content;
+        if ($pos) {
+            $post_content = preg_split('~\(:\)~', $post_content)[1];
+        }
+    }
+    preg_match('/\[gallery.*ids=.(.*).]/', $post_content, $ids);
+    $images_id = explode(",", $ids[1]);
+    $image_gallery_with_info = array();
+    foreach ($images_id as $image_id) {
+        $attachment = get_post($image_id);
+        $image_gallery_with_info[] = array(
+            'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
+            'caption' => $attachment->post_excerpt,
+            'description' => $attachment->post_content,
+            'href' => get_permalink($attachment->ID),
+            'src' => $attachment->guid,
+            'title' => $attachment->post_title
+        );
+    }
+    return $image_gallery_with_info;
+}
+
+/**
+ * Get advantages by main page id
+ * @param $page_id
+ * @return false|string
+ */
+function get_advantages($page_id = false)
+{
+    if (!$page_id) {
+        $page_id = get_option('page_on_front');
+    }
+    ob_start();
+    $advantages = get_post_gallery_or_custom_field(get_field('okna-advantages', $page_id, false));
+    if ($advantages): ?>
+        <section class="okna-advantage">
+            <div class="container">
+                <h2 class="okna-header okna-advantage__header">
+                    Наши преимущества
+                </h2>
+
+                <div class="row">
+                    <?php foreach ($advantages as $image_obj): ?>
+                        <div class="col-lg-4 col-12">
+                            <div class="card-advantage">
+                                <div class="okna-icon card-advantage__icon">
+                                    <img src="<?= $image_obj['src'] ?>" alt="<?= $image_obj['title'] ?>">
+                                </div>
+                                <p class="card-advantage__title"><?= $image_obj['title'] ?></p>
+                                <p class="card-advantage__info okna-text"><?= $image_obj['description'] ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    <?php endif;
+    return ob_get_clean();
+}
+
+// Adding the metaboxes
+add_action('add_meta_boxes', 'add_employee_meta');
+
+/* Saving the data */
+add_action('save_post', 'employee_meta_save');
+
+/* Adding the main meta box container to the post editor screen */
+function add_employee_meta()
+{
+    add_meta_box(
+        'employee-details',
+        'Employee Details',
+        'employee_details_init',
+        'post');
+}
+
+/*Printing the box content */
+function employee_details_init()
+{
+    global $post;
+    // Use nonce for verification
+    wp_nonce_field(plugin_basename(__FILE__), 'employee_nonce');
+    ?>
+    <div id="employee_meta_item">
+    <?php
+
+    //Obtaining the linked employeedetails meta values
+    $employeeDetails = get_post_meta($post->ID, 'employeeDetails', true);
+    $c = 0;
+    if (count($employeeDetails) > 0 && is_array($employeeDetails)) {
+        foreach ($employeeDetails as $employeeDetail) {
+            if (isset($employeeDetail['name']) || isset($employeeDetail['bio'])) {
+                printf('<p>Name<input type="text" name="employeeDetails[%1$s][name]" value="%2$s" />  Package : <textarea name="employeeDetails[%1$s][bio]"  rows="4" cols="50" >%3$s</textarea><a href="#" class="remove-package">%4$s</a></p>', $c, $employeeDetail['name'], $employeeDetail['bio'], 'Remove');
+                $c++;
+            }
+        }
+    }
+
+    ?>
+    <span id="output-package"></span>
+    <a href="#" class="add_package"><?php _e('Add Employee Details'); ?></a>
+    <script>
+        var $ = jQuery.noConflict();
+        $(document).ready(function () {
+            let count = <?php echo $c; ?>;
+            $(".add_package").on('click', function () {
+                count++
+                $('#output-package').append('<p> Name <input type="text" name="employeeDetails[' + count + '][name]" value="" />  bio : <textarea name="employeeDetails[' + count + '][bio]" rows="4" cols="50" ></textarea><a href="#" class="remove-package"><?php echo "Remove"; ?></a></p>');
+                return false
+            });
+            $(document.body).on('click', '.remove-package', function () {
+                $(this).parent().remove();
+            });
+        });
+    </script>
+    </div><?php
+
+}
+
+/* Save function for the entered data */
+function employee_meta_save($post_id)
+{
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    // Verifying the nonce
+    if (!isset($_POST['employee_nonce'])) {
+        return;
+    }
+
+    if (!wp_verify_nonce($_POST['employee_nonce'], plugin_basename(__FILE__))) {
+        return;
+    }
+    // Updating the employeeDetails meta data
+    $employeeDetails = $_POST['employeeDetails'];
+
+    update_post_meta($post_id, 'employeeDetails', $employeeDetails);
+}

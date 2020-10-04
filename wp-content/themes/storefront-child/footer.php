@@ -103,7 +103,7 @@ $photo_manager = get_field('photo_manager', 14);
             <div class="col-lg-6 offset-lg-1 offset-0 col-12">
                 <div class="pre-footer-body">
                     <p class="pre-footer__title">
-                        Остались вопросы
+                        Остались вопросы?
                     </p>
                     <div class="pre-footer-card">
                         <?php if ($photo_manager): ?>
