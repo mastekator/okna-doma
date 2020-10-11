@@ -91,10 +91,13 @@
                 </nav>
             </div>
 
-        </header><!-- #masthead -->
+        </header>
 
         <div class="container header-wrapper__container">
-            <h1 class="header-wrapper__title"><?= get_field('main_text', 20) ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?></h1>
+            <h1 class="header-wrapper__title">
+                <?= get_field('main_text', 20)
+                    ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
+            </h1>
             <button class="btn btn-okna-primary inc-reaction" data-title="Оформите заявку на замеры" data-toggle="modal"
                     data-target="#orderModal">
                 Оставить заявку
@@ -105,7 +108,13 @@
         </div>
     </div>
 
-
+    <?php if (function_exists('yoast_breadcrumb') && !is_front_page()): ?>
+        <div class="breadcrumb">
+            <div class="container">
+                <?php yoast_breadcrumb('<p class="breadcrumb-primary" id="breadcrumbs">', '</p>'); ?>
+            </div>
+        </div>
+    <?php endif; ?>
     <?php
     /**
      * Functions hooked in to storefront_before_content

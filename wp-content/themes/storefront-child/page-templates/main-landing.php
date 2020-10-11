@@ -9,46 +9,8 @@ Template Post Type: post, page, product
 
 </div>
 </div>
-<section class="okna-categories">
-    <div class="container">
-        <h2 class="okna-header okna-categories__header">
-            Выберите категорию
-        </h2>
 
-        <div class="row">
-            <div class="col-lg-6 col-12">
-                <a href="#" class="card-category inc-reaction">
-                    <img class="card-category__img" src="/wp-content/themes/storefront-child/img/okno.png" alt="">
-                    <div class="card-category__body">
-                        <div>
-                            <p class="card-category__title bottom-line">
-                                shuko
-                            </p>
-                            <p class="card-category__info okna-text">
-                                Описание продукции, очень неплохие окна, высокое качество
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-12">
-                <a href="#" class="card-category inc-reaction">
-                    <img class="card-category__img" src="/wp-content/themes/storefront-child/img/okno.png" alt="">
-                    <div class="card-category__body">
-                        <div>
-                            <p class="card-category__title bottom-line">
-                                shuko
-                            </p>
-                            <p class="card-category__info okna-text">
-                                Описание продукции, очень неплохие окна, высокое качество
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+<?= getPopularProducts() ?>
 
 <section class="okna-process">
     <div class="container">
@@ -248,7 +210,7 @@ Template Post Type: post, page, product
 <section class="okna-trust">
     <div class="container">
         <h2 class="okna-header okna-trust__header">
-            Наши доверяют
+            Нам доверяют
         </h2>
 
         <div class="swiper-container okna-trust__swiper">

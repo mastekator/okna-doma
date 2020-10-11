@@ -35,7 +35,7 @@ function enqueue_child_theme_styles()
         wp_enqueue_style('wp-bootstrap-starter-' . get_theme_mod('theme_option_setting'), get_template_directory_uri() . '/inc/assets/css/presets/theme-option/' . get_theme_mod('theme_option_setting') . '.css', false, '');
     }
 
-    wp_enqueue_script('jQuery', get_stylesheet_directory_uri() . '/inc/assets/js/jquery-3.4.1.slim.min.js', array(), '1.0', false);
+    wp_enqueue_script('jQuery', get_stylesheet_directory_uri() . '/inc/assets/js/jquery-3.5.1.js', array(), '1.0', false);
     wp_enqueue_style('ripple-effect', get_stylesheet_directory_uri() . '/inc/assets/css/ripple-effect.css', array(), '1.0', false);
     wp_enqueue_script('ripple-effect-js', get_stylesheet_directory_uri() . '/inc/assets/js/ripple-effect.min.js', array(), '1.0', true);
 
@@ -350,6 +350,7 @@ function get_projects($cat_id)
                     <div class="swiper-wrapper">
                         <?php foreach ($projects as $project):
                             $project_id = $project->ID;
+                            $project_image = get_the_post_thumbnail_url($project_id);
                             $link = get_permalink($project_id);
                             $project_params = array_filter(explode(';', get_field('project_params', $project_id)));
                             ?>
@@ -375,7 +376,7 @@ function get_projects($cat_id)
                                         <div class="col-lg-7 col-12">
                                             <a href="<?= $link ?>">
                                                 <img class="card-project__img"
-                                                     src="/wp-content/themes/storefront-child/img/project.jpg" alt="">
+                                                     src="<?= $project_image ?>" alt="<?= $project->post_title ?>">
                                             </a>
                                         </div>
                                     </div>
@@ -472,81 +473,158 @@ function get_advantages($page_id = false)
     return ob_get_clean();
 }
 
-// Adding the metaboxes
-add_action('add_meta_boxes', 'add_employee_meta');
 
-/* Saving the data */
-add_action('save_post', 'employee_meta_save');
-
-/* Adding the main meta box container to the post editor screen */
-function add_employee_meta()
+/**
+ * Render popular products
+ * @return false|string
+ */
+function getPopularProducts()
 {
-    add_meta_box(
-        'employee-details',
-        'Employee Details',
-        'employee_details_init',
-        'post');
-}
-
-/*Printing the box content */
-function employee_details_init()
-{
-    global $post;
-    // Use nonce for verification
-    wp_nonce_field(plugin_basename(__FILE__), 'employee_nonce');
-    ?>
-    <div id="employee_meta_item">
+    $args = array(
+        'limit' => 2,
+        'page' => 1,
+        'status' => 'publish'
+    );
+    $products = wc_get_products($args);
+    ob_start();
+    if ($products) : ?>
+        <section class="okna-popular">
+            <div class="container">
+                <h2 class="okna-header okna-popular__header">
+                    Популярные товары
+                </h2>
+                <div class="row">
+                    <?php foreach ($products as $product):
+                        $image_url = wp_get_attachment_url($product->get_image_id()) ?>
+                        <div class="col-lg-6 col-12">
+                            <a href="<?= $product->get_permalink() ?>" class="card-product inc-reaction">
+                                <img class="card-product__img" src="<?= $image_url ?>"
+                                     alt="<?= $product->name ?>">
+                                <div class="card-product__body">
+                                    <div>
+                                        <p class="card-product__title bottom-line">
+                                            <?= $product->name ?>
+                                        </p>
+                                        <p class="card-product__info okna-text">
+                                            <?= mb_strimwidth($product->description, 0, 80, '...') ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
     <?php
-
-    //Obtaining the linked employeedetails meta values
-    $employeeDetails = get_post_meta($post->ID, 'employeeDetails', true);
-    $c = 0;
-    if (count($employeeDetails) > 0 && is_array($employeeDetails)) {
-        foreach ($employeeDetails as $employeeDetail) {
-            if (isset($employeeDetail['name']) || isset($employeeDetail['bio'])) {
-                printf('<p>Name<input type="text" name="employeeDetails[%1$s][name]" value="%2$s" />  Package : <textarea name="employeeDetails[%1$s][bio]"  rows="4" cols="50" >%3$s</textarea><a href="#" class="remove-package">%4$s</a></p>', $c, $employeeDetail['name'], $employeeDetail['bio'], 'Remove');
-                $c++;
-            }
-        }
-    }
-
-    ?>
-    <span id="output-package"></span>
-    <a href="#" class="add_package"><?php _e('Add Employee Details'); ?></a>
-    <script>
-        var $ = jQuery.noConflict();
-        $(document).ready(function () {
-            let count = <?php echo $c; ?>;
-            $(".add_package").on('click', function () {
-                count++
-                $('#output-package').append('<p> Name <input type="text" name="employeeDetails[' + count + '][name]" value="" />  bio : <textarea name="employeeDetails[' + count + '][bio]" rows="4" cols="50" ></textarea><a href="#" class="remove-package"><?php echo "Remove"; ?></a></p>');
-                return false
-            });
-            $(document.body).on('click', '.remove-package', function () {
-                $(this).parent().remove();
-            });
-        });
-    </script>
-    </div><?php
-
+    endif;
+    return ob_get_clean();
 }
 
-/* Save function for the entered data */
-function employee_meta_save($post_id)
+/**
+ * Custom woocommerce_before_shop_loop_item
+ */
+function cardProductLoop()
 {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    // Verifying the nonce
-    if (!isset($_POST['employee_nonce'])) {
-        return;
-    }
-
-    if (!wp_verify_nonce($_POST['employee_nonce'], plugin_basename(__FILE__))) {
-        return;
-    }
-    // Updating the employeeDetails meta data
-    $employeeDetails = $_POST['employeeDetails'];
-
-    update_post_meta($post_id, 'employeeDetails', $employeeDetails);
+    echo '<div class="card-product inc-reaction">';
 }
+
+add_action('woocommerce_before_shop_loop_item', 'cardProductLoop');
+
+/**
+ * Custom woocommerce_content
+ */
+function woocommerce_content()
+{
+    if (is_singular('product')) {
+
+        while (have_posts()) :
+            the_post();
+            wc_get_template_part('content', 'single-product');
+        endwhile;
+
+    } else {
+        ?>
+
+        <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
+
+            <p class="catalog-title">Умная фильтрация</p>
+            <p class="catalog-info">Выберите категорию</p>
+
+            <?= do_shortcode('[br_filter_single filter_id=79]') ?>
+
+        <?php endif; ?>
+
+        <?php if (woocommerce_product_loop()) : ?>
+
+            <?php do_action('woocommerce_before_shop_loop'); ?>
+
+            <?php woocommerce_product_loop_start(); ?>
+
+            <?php if (wc_get_loop_prop('total')) : ?>
+                <?php the_post(); ?>
+                <?php wc_get_template_part('content', 'product'); ?>
+            <?php endif; ?>
+
+            <?php woocommerce_product_loop_end(); ?>
+
+            <?php do_action('woocommerce_after_shop_loop'); ?>
+
+        <?php
+        else :
+            do_action('woocommerce_no_products_found');
+        endif;
+    }
+}
+
+add_filter('BeRocket_AAPF_template_full_content', 'custom_berocket_aapf_template_full_content', 4000, 3);
+
+add_filter('BeRocket_AAPF_template_single_item', 'custom_berocket_aapf_template_single_content', 4000, 4);
+
+/**
+ * Change default aapf template
+ * @param $template_content
+ * @param $terms
+ * @param $berocket_query_var_title
+ * @return mixed
+ */
+function custom_berocket_aapf_template_full_content($template_content, $terms, $berocket_query_var_title)
+{
+    if ($berocket_query_var_title['new_template'] === 'checkbox') {
+        $template_content['template']['content']['filter']['content']['list']['tag'] = 'div';
+        $template_content['template']['content']['filter']['content']['list']['attributes'] = array(
+            'class' => 'catalog-filter'
+        );
+    }
+    return $template_content;
+}
+
+/**
+ * Change default aapf template
+ * @param $element
+ * @param $term
+ * @param $i
+ * @param $berocket_query_var_title
+ * @return mixed
+ */
+function custom_berocket_aapf_template_single_content($element, $term, $i, $berocket_query_var_title)
+{
+    if ($berocket_query_var_title['new_template'] === 'checkbox') {
+        $element['tag'] = 'div';
+        $for = $element['content']['label']['attributes']['for'];
+        $icon = 'background-image: url("/wp-content/themes/storefront-child/img/category-filter/' . $term->slug . '.svg")';
+        $element['content']['label']['attributes'] = array(
+            'style' => $icon,
+            'for' => $for
+        );
+    }
+    return $element;
+}
+
+add_action('init', 'storefront_remove_storefront_breadcrumbs');
+
+function storefront_remove_storefront_breadcrumbs()
+{
+    remove_action('storefront_before_content', 'woocommerce_breadcrumb', 10);
+}
+
