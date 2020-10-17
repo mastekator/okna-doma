@@ -20,6 +20,7 @@ get_header(); ?>
             <?php woocommerce_content(); ?>
         </main>
     </section>
+
 <?php else: ?>
     <?php get_sidebar(); ?>
     <section id="primary" class="content-area col-sm-12 archive-product-page">

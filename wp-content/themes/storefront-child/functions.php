@@ -39,6 +39,9 @@ function enqueue_child_theme_styles()
     wp_enqueue_style('ripple-effect', get_stylesheet_directory_uri() . '/inc/assets/css/ripple-effect.css', array(), '1.0', false);
     wp_enqueue_script('ripple-effect-js', get_stylesheet_directory_uri() . '/inc/assets/js/ripple-effect.min.js', array(), '1.0', true);
 
+    wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/inc/assets/css/jquery.fancybox.min.css', array(), '1.0', false);
+    wp_enqueue_script('fancybox-js', get_stylesheet_directory_uri() . '/inc/assets/js/jquery.fancybox.min.js', array(), '1.0', true);
+
 
     // Internet Explorer HTML5 support
     wp_enqueue_script('html5hiv', get_template_directory_uri() . '/inc/assets/js/html5.js', array(), '3.7.0', false);
@@ -227,20 +230,6 @@ function new_woocommerce_checkout_fields($fields)
 
 remove_action('storefront_footer', 'storefront_credit', 20);
 
-/**
- * Remove product data tabs
- */
-add_filter('woocommerce_product_tabs', 'woo_remove_product_tabs', 98);
-
-function woo_remove_product_tabs($tabs)
-{
-
-    unset($tabs['description'],
-        $tabs['reviews'],
-        $tabs['additional_information']);
-    return $tabs;
-}
-
 //Количество товаров для вывода на странице магазина
 add_filter('loop_shop_per_page', 'wg_view_all_products');
 
@@ -424,6 +413,7 @@ function get_post_gallery_or_custom_field($post_content = '', $postvar = NULL, $
     foreach ($images_id as $image_id) {
         $attachment = get_post($image_id);
         $image_gallery_with_info[] = array(
+            'image_id' => $image_id,
             'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
             'caption' => $attachment->post_excerpt,
             'description' => $attachment->post_content,
@@ -495,11 +485,12 @@ function getPopularProducts()
                 </h2>
                 <div class="row">
                     <?php foreach ($products as $product):
-                        $image_url = wp_get_attachment_url($product->get_image_id()) ?>
+                        $image = wp_get_attachment_image($product->get_image_id(), 'full') ?>
                         <div class="col-lg-6 col-12">
                             <a href="<?= $product->get_permalink() ?>" class="card-product inc-reaction">
-                                <img class="card-product__img" src="<?= $image_url ?>"
-                                     alt="<?= $product->name ?>">
+                                <div class="card-product__img">
+                                    <?= apply_filters('a3_lazy_load_images', $image, null) ?>
+                                </div>
                                 <div class="card-product__body">
                                     <div>
                                         <p class="card-product__title bottom-line">
@@ -562,8 +553,10 @@ function woocommerce_content()
             <?php woocommerce_product_loop_start(); ?>
 
             <?php if (wc_get_loop_prop('total')) : ?>
-                <?php the_post(); ?>
-                <?php wc_get_template_part('content', 'product'); ?>
+                <?php while (have_posts()) : ?>
+                    <?php the_post(); ?>
+                    <?php wc_get_template_part('content', 'product'); ?>
+                <?php endwhile; ?>
             <?php endif; ?>
 
             <?php woocommerce_product_loop_end(); ?>
@@ -626,5 +619,133 @@ add_action('init', 'storefront_remove_storefront_breadcrumbs');
 function storefront_remove_storefront_breadcrumbs()
 {
     remove_action('storefront_before_content', 'woocommerce_breadcrumb', 10);
+}
+
+// Удаление инлайн-скриптов из хедера
+add_filter('storefront_customizer_css', '__return_false');
+add_filter('storefront_customizer_woocommerce_css', '__return_false');
+add_filter('storefront_gutenberg_block_editor_customizer_css', '__return_false');
+
+add_action('wp_print_styles', function () {
+    wp_styles()->add_data('woocommerce-inline', 'after', '');
+});
+
+add_action('init', function () {
+    remove_action('wp_head', 'wc_gallery_noscript');
+});
+
+add_action('init', function () {
+    remove_action('wp_head', 'wc_gallery_noscript');
+});
+// Конец удаления инлайн-скриптов из хедера
+
+/**
+ * Render colors block
+ * @param $image_id
+ * @return false|string
+ */
+function get_colors($image_id)
+{
+    $image = wp_get_attachment_image($image_id, 'full');
+    $image_url = wp_get_attachment_image_url($image_id, 'full');
+
+    ob_start();
+    ?>
+    <section class="okna-colors">
+        <div class="container">
+            <h2 class="okna-header okna-colors__header">Разнообразие цвета</h2>
+
+            <div class="row position-relative">
+                <div class="col-lg-8 col-12 okna-colors-card">
+                    <a data-fancybox="gallery" href="<?= $image_url ?>">
+                        <?= apply_filters('a3_lazy_load_images', $image, null) ?>
+                    </a>
+                </div>
+                <div class="col-lg-5 col-12 okna-colors-card_info">
+                    <div>
+                        <h3 class="okna-header okna-colors-card__header">Таблица цветов по шкале RAL</h3>
+                        <p class="okna-text">Конструкции из алюминия позволяют к покраске в любой цвет из таблицы цветов
+                            RAL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+    return ob_get_clean();
+}
+
+/**
+ * Render trust block
+ * @return false|string
+ */
+function get_trust()
+{
+    ob_start(); ?>
+    <section class="okna-trust">
+        <div class="container">
+            <h2 class="okna-header okna-trust__header">
+                Нам доверяют
+            </h2>
+
+            <div class="swiper-container okna-trust__swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card-trust">
+                            <div class="card-trust__icon">
+                                <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                            </div>
+                            <p class="card-trust__title">
+                                Название проекта
+                            </p>
+                            <p class="card-trust__info okna-text">
+                                Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card-trust">
+                            <div class="card-trust__icon">
+                                <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                            </div>
+                            <p class="card-trust__title">
+                                Название проекта
+                            </p>
+                            <p class="card-trust__info okna-text">
+                                Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card-trust">
+                            <div class="card-trust__icon">
+                                <img src="/wp-content/themes/storefront-child/img/gaz.png" alt="">
+                            </div>
+                            <p class="card-trust__title">
+                                Название проекта
+                            </p>
+                            <p class="card-trust__info okna-text">
+                                Описание проекта, дата сдачи проекта. Описание проекта, дата сдачи проекта.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+        <script>
+            const oknaTrust = new Swiper('.okna-trust__swiper', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        </script>
+    </section>
+    <?php
+    return ob_get_clean();
 }
 

@@ -26,8 +26,11 @@ if (empty($product) || !$product->is_visible()) {
 ?>
 <div <?php wc_product_class('col-lg-6 col-12', $product); ?>>
     <a href="<?= $product->get_permalink() ?>" class="card-product inc-reaction">
-        <img class="card-product__img" src="<?= wp_get_attachment_url($product->get_image_id()) ?>"
-             alt="<?= $product->name ?>">
+        <div class="card-product__img">
+            <?= apply_filters('a3_lazy_load_images',
+                wp_get_attachment_image($product->get_image_id(), 'full')
+                    ?: '/wp-content/themes/storefront-child/img/540x540.png', null) ?>
+        </div>
         <div class="card-product__body">
             <div>
                 <p class="card-product__title bottom-line">

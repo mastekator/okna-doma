@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
     <?php do_action('storefront_before_header'); ?>
 
-    <div class="header-wrapper">
+    <div class="header-wrapper <?= !is_front_page() ? 'header-wrapper_mini' : '' ?>">
         <header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
 
             <div class="container">

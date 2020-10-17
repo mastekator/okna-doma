@@ -21,7 +21,8 @@ $fio_manager = get_field('fio_manager', 14);
 $photo_manager = get_field('photo_manager', 14);
 ?>
 
-<div class="modal fade okna-modal" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+<div class="modal fade okna-modal okna-card" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -48,6 +49,10 @@ $photo_manager = get_field('photo_manager', 14);
         </div>
     </div>
 </div>
+
+<?php if (is_shop() || is_product()) {
+    echo get_colors(127);
+} ?>
 
 <div class="pre-footer">
     <div class="container">
@@ -105,7 +110,7 @@ $photo_manager = get_field('photo_manager', 14);
                     <p class="pre-footer__title">
                         Остались вопросы?
                     </p>
-                    <div class="pre-footer-card">
+                    <div class="pre-footer-card okna-card">
                         <?php if ($photo_manager): ?>
                             <img src="<?= $photo_manager ?>"
                                  alt="Менеджер по работе с клиентами">
@@ -211,7 +216,7 @@ $photo_manager = get_field('photo_manager', 14);
                 &copy; 2019 - <?php echo date('Y'); ?>
                 <?php echo '<a class="footer-name" href="' . home_url() . '">' . get_bloginfo('name') . '</a>'; ?>
             </p>
-            <a class="mastekator" href="#">Designed by Mastekator</a>
+            <a class="mastekator" target="_blank" href="https://github.com/mastekator">Designed by Mastekator</a>
         </div>
     </div>
 
@@ -228,22 +233,21 @@ $photo_manager = get_field('photo_manager', 14);
         do_action('storefront_footer');
         ?>
 
-    </div><!-- .col-full -->
-</footer><!-- #colophon -->
+    </div>
+</footer>
+
+<?php do_action('storefront_after_footer'); ?>
+
+</div>
+
+<?php wp_footer(); ?>
 
 <script>
     $('[data-toggle="modal"]').on('click', function () {
         const text = $(this).data('title') || 'Оформите заявку на замеры'
         $('#orderModal .modal-title').text(text)
     })
-</script>
 
-<?php do_action('storefront_after_footer'); ?>
-
-</div><!-- #page -->
-
-<?php wp_footer(); ?>
-<script>
     $('.inc-reaction').rippleEffect()
 </script>
 
