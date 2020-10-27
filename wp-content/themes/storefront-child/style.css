@@ -2062,6 +2062,75 @@ textarea, .input-text, .okna-input {
     margin-left: 15px;
 }
 
+html .okna-about {
+    margin-top: 50px !important;
+    position: relative;
+}
+
+.okna-about .okna-about-map {
+    position: unset;
+    height: 500px;
+}
+
+.okna-about .okna-about__header {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.okna-about-card {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.33);
+    border-radius: 6px;
+    padding: 25px 35px 35px;
+}
+
+.okna-about-card .okna-about-card__title {
+    font-size: 24px;
+    line-height: 21px;
+    color: #000000;
+    margin-bottom: 18px;
+}
+
+.okna-about-card .okna-about-card__sub-title {
+    font-size: 14px;
+    line-height: 17px;
+    color: #767676;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.okna-about .okna-about-map .okna-about-map__container {
+    position: absolute;
+    top: 0;
+    padding-left: 15px;
+    height: 100%;
+    width: 55%;
+    right: 0;
+}
+
+.okna-about-card .okna-about-card__link {
+    font-size: 17px;
+    line-height: 21px;
+    color: #000000;
+    margin-bottom: 9px;
+    display: table;
+    align-items: center;
+    transition: 145ms ease-in-out;
+}
+
+.okna-about-card .okna-about-card__link:hover {
+    color: #D7A31A;
+}
+
+.okna-about-card .okna-about-card__link svg {
+    max-width: 24px;
+    margin-right: 10px;
+}
+
+.okna-about-card .okna-about-card__link:last-of-type {
+    margin-bottom: 15px;
+}
+
 
 /*--------------------------------------------------------------
 # MEDIA
