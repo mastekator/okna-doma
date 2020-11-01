@@ -23,7 +23,12 @@ global $post;
 
 ?>
 
-<button class="btn btn-okna-primary inc-reaction product__order">
+<button class="btn btn-okna-primary inc-reaction product__order"
+        data-title="Оформление заказа"
+        data-product="Продукт: <?= $post->post_title ?>"
+        data-toggle="modal"
+        data-btn="Оформить заказ"
+        data-target="#orderModal">
     Оформить заказ
 </button>
 

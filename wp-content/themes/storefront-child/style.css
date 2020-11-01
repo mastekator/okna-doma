@@ -3,7 +3,7 @@ Theme Name:   	Richbee
 Author:       	Richbee
 Template:     	storefront
 Description:  	Дочерняя тема для storefront
-Version:      	1.0.2
+Version:      	1.0.3
 Theme URI:    https://richbee.ru/
 Author URI:   https://richbee.ru/
 
@@ -1823,6 +1823,13 @@ img {
     margin-bottom: 40px;
 }
 
+.okna-modal .okna-modal__subtitle {
+    font-size: 25px;
+    line-height: 23px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
 .okna-modal .close svg {
     transition: 145ms ease-in-out;
 }
@@ -1868,6 +1875,25 @@ textarea, .input-text, .okna-input {
     width: 100%;
     max-width: 280px;
     max-height: 60px;
+}
+
+.okna-input__form input {
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 17px;
+    height: auto;
+    width: 100%;
+    max-width: 280px;
+    max-height: 60px;
+}
+
+.okna-modal .alert-success {
+    border: 1px solid #D7A31A;
+    color: #000;
+    background-color: #d7a31a0a;
+    padding: 30px;
 }
 
 .okna-modal .okna-input {
@@ -2063,7 +2089,7 @@ textarea, .input-text, .okna-input {
 }
 
 html .okna-about {
-    margin-top: 50px !important;
+    margin-top: -16px !important;
     position: relative;
 }
 
@@ -2075,6 +2101,7 @@ html .okna-about {
 .okna-about .okna-about__header {
     text-align: left;
     margin-bottom: 50px;
+    padding-top: 30px;
 }
 
 .okna-about-card {

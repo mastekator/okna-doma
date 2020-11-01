@@ -27,6 +27,7 @@ $photo_manager = get_field('photo_manager', 14);
         <div class="modal-content">
             <div class="modal-body">
                 <h5 class="modal-title bottom-line" id="orderModalLabel">Оформите заявку на замеры</h5>
+                <p class="okna-modal__subtitle" style="display: none"></p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1.43433" width="29.0843" height="2.02842" rx="1.01421" transform="rotate(45 1.43433 0)"
@@ -39,12 +40,7 @@ $photo_manager = get_field('photo_manager', 14);
                     Менеджер скоро с вами свяжется. Обычно это занимает не более 20 минут в зависимости от загруженности
                     операторов
                 </p>
-                <div class="okna-modal__form">
-                    <input class="okna-input" name="phone" type="text">
-                    <button class="btn-okna-primary btn inc-reaction">
-                        Отправить заявку
-                    </button>
-                </div>
+                <?= do_shortcode('[caldera_form id="CF5f9ec98340f10"]') ?>
             </div>
         </div>
     </div>
@@ -245,7 +241,18 @@ $photo_manager = get_field('photo_manager', 14);
 <script>
     $('[data-toggle="modal"]').on('click', function () {
         const text = $(this).data('title') || 'Оформите заявку на замеры'
+        const productTitle = $(this).data('product') || ''
+        const button = $(this).data('btn') || 'Отправить заявку'
+        const $productTitle = $('#orderModal .okna-modal__subtitle')
         $('#orderModal .modal-title').text(text)
+        $('#orderModal .okna-modal__form .btn-okna-primary').text(button)
+        if (productTitle) {
+            $('#fld_681408_1').val(JSON.stringify(productTitle))
+            $productTitle.text(productTitle).show()
+        } else {
+            $productTitle.hide()
+            $('#fld_681408_1').val('Продукт не указан')
+        }
     })
 
     $('.inc-reaction').rippleEffect()
