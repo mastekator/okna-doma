@@ -388,6 +388,44 @@ function get_projects($cat_id)
     return ob_get_clean();
 }
 
+function get_projects_grid($cat_id)
+{
+    $args = array(
+        'category' => $cat_id,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'numberposts' => -1
+    );
+    $projects = get_posts($args);
+    ob_start();
+    if ($projects): ?>
+        <section class="our-projects">
+            <div class="container">
+                <h2 class="okna-header our-projects__header">
+                    Наши проекты
+                </h2>
+                <div class="row">
+                    <?php foreach ($projects as $project):
+                        $project_id = $project->ID;
+                        $project_image_url = get_the_post_thumbnail_url($project_id);
+                        $link = get_permalink($project_id);
+                        ?>
+                        <div class="col-lg-6 col-12">
+                            <a href="<?= $link ?>" class="our-projects-item inc-reaction"
+                               style="background-image: url('<?= $project_image_url ?>')">
+                                <p class="our-projects-item__title">
+                                    <?= $project->post_title ?>
+                                </p>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    <?php endif;
+    return ob_get_clean();
+}
+
 /**
  * Get post or custom field gallery images
  * @param null $postvar
