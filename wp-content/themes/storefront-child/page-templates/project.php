@@ -60,20 +60,21 @@ $project_gallery = get_post_gallery_or_custom_field(get_field('project_gallery',
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
+
+            <script>
+                const oknaProject = new Swiper('.project__swiper', {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            </script>
         <?php endif; ?>
     </div>
 </section>
 
-<script>
-    const oknaProject = new Swiper('.project__swiper', {
-        slidesPerView: 2,
-        spaceBetween: 30,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-</script>
 
 <?= get_colors(127) ?>
 
