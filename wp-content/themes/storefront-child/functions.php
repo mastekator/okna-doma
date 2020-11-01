@@ -388,6 +388,11 @@ function get_projects($cat_id)
     return ob_get_clean();
 }
 
+/**
+ * get projects grid
+ * @param $cat_id
+ * @return false|string
+ */
 function get_projects_grid($cat_id)
 {
     $args = array(
@@ -787,3 +792,30 @@ function get_trust()
     return ob_get_clean();
 }
 
+/**
+ * Modify yoast breadcrumbs
+ * /category/news -> /news/
+ * @param $links
+ * @return mixed
+ */
+function yoast_seo_breadcrumb_modify_link($links)
+{
+    if (is_single()) {
+        $current_url = home_url($_SERVER['REQUEST_URI']);
+        $current_url_hash = parse_url($current_url, PHP_URL_PATH);
+
+        $category_url_hash = array_filter(explode("/", $current_url_hash));
+
+        $breadcrumb[] = array(
+            'url' => site_url($category_url_hash[1]),
+            'text' => $links[1]['text'],
+        );
+
+        unset($links[1]);
+
+        array_splice($links, 1, -2, $breadcrumb);
+    }
+    return $links;
+}
+
+add_filter('wpseo_breadcrumb_links', 'yoast_seo_breadcrumb_modify_link');

@@ -1635,20 +1635,70 @@ img {
     padding: 5px;
 }
 
-.okna-projects .swiper-pagination {
+.okna-projects .swiper-pagination, .project .swiper-pagination {
     position: unset;
     margin-top: 10px;
 }
 
-.okna-projects .swiper-pagination-bullet {
+.okna-projects .swiper-pagination-bullet, .project .swiper-pagination-bullet {
     background: #FFFFFF;
     opacity: 1;
     border: 1px solid #D7A31A;
 }
 
-.okna-projects .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.okna-projects .swiper-pagination-bullet.swiper-pagination-bullet-active, .project .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background: #D7A31A;
     border: 1px solid #D7A31A;
+}
+
+.project .container {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.project .project__header {
+    margin-bottom: 20px;
+}
+
+.project .project__description, .project .project__description p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.project .project__description p {
+    margin-bottom: 15px;
+}
+
+.project .project__list {
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.project .project__list > li {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 8px;
+    list-style: none;
+}
+
+.project .project__swiper {
+    padding-top: 40px;
+}
+
+.project .project__swiper a {
+    max-height: 400px;
+    display: block;
+    width: 100%;
+}
+
+.project .project__swiper a img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .okna-trust {
