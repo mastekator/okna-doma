@@ -706,9 +706,11 @@ function get_colors($image_id)
                 </div>
                 <div class="col-lg-5 col-12 okna-colors-card_info">
                     <div>
-                        <h3 class="okna-header okna-colors-card__header">Таблица цветов по шкале RAL</h3>
-                        <p class="okna-text">Конструкции из алюминия позволяют к покраске в любой цвет из таблицы цветов
-                            RAL</p>
+                        <h3 class="okna-header okna-colors-card__header" style="font-size: 24px">Таблица цветов по шкале
+                            RAL</h3>
+                        <p class="okna-text">Алюминиевые конструкции возможно покрасить в любой цвет по международной
+                            шкале RAL, покрытие покраски может быть глянцевой, матовой либо муар. Также возможна
+                            покраска под структуру дерева.</p>
                     </div>
                 </div>
             </div>
