@@ -67,7 +67,6 @@ $index = 0;
             <a data-fancybox="gallery" href="<?= $image_url ?>">
                 <?= apply_filters('a3_lazy_load_images', $image, null) ?>
             </a>
-            <?= apply_filters('a3_lazy_load_images', $image, null) ?>
         </div>
         <div class="col-lg-6 col-12 product-description-item__card <?= ($index + 1) % 2 === 0 ? 'order-1 offset-lg-0 offset-0' : 'order-2 offset-lg-6 offset-0' ?>">
             <div>
