@@ -3,7 +3,7 @@ Theme Name:   	Richbee
 Author:       	Richbee
 Template:     	storefront
 Description:  	Дочерняя тема для storefront
-Version:      	1.0.5
+Version:      	1.0.6
 Theme URI:    https://richbee.ru/
 Author URI:   https://richbee.ru/
 
@@ -108,6 +108,10 @@ ul.menu li.current-menu-item > a:before {
 
 .form-control:focus {
     box-shadow: none !important;
+}
+
+blockquote + h2, blockquote + h3, blockquote + h4, blockquote + header h2, form + h2, form + h3, form + h4, form + header h2, ol + h2, ol + h3, ol + h4, ol + header h2, p + h2, p + h3, p + h4, p + header h2, table + h2, table + h3, table + h4, table + header h2, ul + h2, ul + h3, ul + h4, ul + header h2 {
+    margin-top: 0;
 }
 
 /*--------------------------------------------------------------
