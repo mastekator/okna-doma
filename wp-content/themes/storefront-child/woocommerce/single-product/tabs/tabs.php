@@ -40,10 +40,13 @@ $index = 0;
 <div class="product-description col-12">
     <h2 class="okna-header product-description__header">Описание</h2>
     <?php foreach ($gallery as $key => $image_obj):
-        $image = wp_get_attachment_image($image_obj['image_id'], 'full'); ?>
+        $imageGallery = wp_get_attachment_image($image_obj['image_id'], 'full');
+        $image_url = wp_get_attachment_image_url($image_obj['image_id'], 'full'); ?>
         <div class="product-description-item row">
             <div class="col-lg-6 col-12 product-description-item__img <?= ($index + 1) % 2 === 0 ? 'order-2 offset-lg-5 offset-0' : 'order-1 offset-lg-1 offset-0' ?>">
-                <?= apply_filters('a3_lazy_load_images', $image, null) ?>
+                <a data-fancybox="gallery" href="<?= $image_url ?>">
+                    <?= apply_filters('a3_lazy_load_images', $imageGallery, null) ?>
+                </a>
             </div>
             <div class="col-lg-6 col-12 product-description-item__card <?= ($index + 1) % 2 === 0 ? 'order-1 offset-lg-0 offset-0' : 'order-2 offset-lg-6 offset-0' ?>">
                 <div>
@@ -56,10 +59,14 @@ $index = 0;
         <?php
         $index++;
     endforeach;
-    $image = wp_get_attachment_image(get_field('product_image'), 'full'); ?>
+    $image = wp_get_attachment_image(get_field('product_image'), 'full');
+    $image_url = wp_get_attachment_image_url(get_field('product_image'), 'full'); ?>
 
     <div class="product-description-item row">
         <div class="col-lg-6 col-12 product-description-item__img <?= ($index + 1) % 2 === 0 ? 'order-2 offset-lg-5 offset-0' : 'order-1 offset-lg-1 offset-0' ?>">
+            <a data-fancybox="gallery" href="<?= $image_url ?>">
+                <?= apply_filters('a3_lazy_load_images', $image, null) ?>
+            </a>
             <?= apply_filters('a3_lazy_load_images', $image, null) ?>
         </div>
         <div class="col-lg-6 col-12 product-description-item__card <?= ($index + 1) % 2 === 0 ? 'order-1 offset-lg-0 offset-0' : 'order-2 offset-lg-6 offset-0' ?>">
