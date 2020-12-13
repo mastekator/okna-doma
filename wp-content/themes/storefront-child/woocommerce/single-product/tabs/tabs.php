@@ -62,16 +62,18 @@ $index = 0;
     $image = wp_get_attachment_image(get_field('product_image'), 'full');
     $image_url = wp_get_attachment_image_url(get_field('product_image'), 'full'); ?>
 
-    <div class="product-description-item row">
-        <div class="col-lg-6 col-12 product-description-item__img <?= ($index + 1) % 2 === 0 ? 'order-2 offset-lg-5 offset-0' : 'order-1 offset-lg-1 offset-0' ?>">
-            <a data-fancybox="gallery" href="<?= $image_url ?>">
-                <?= apply_filters('a3_lazy_load_images', $image, null) ?>
-            </a>
-        </div>
-        <div class="col-lg-6 col-12 product-description-item__card <?= ($index + 1) % 2 === 0 ? 'order-1 offset-lg-0 offset-0' : 'order-2 offset-lg-6 offset-0' ?>">
-            <div>
-                <?= get_field('product_description') ?>
+    <?php if ($image): ?>
+        <div class="product-description-item row">
+            <div class="col-lg-6 col-12 product-description-item__img <?= ($index + 1) % 2 === 0 ? 'order-2 offset-lg-5 offset-0' : 'order-1 offset-lg-1 offset-0' ?>">
+                <a data-fancybox="gallery" href="<?= $image_url ?>">
+                    <?= apply_filters('a3_lazy_load_images', $image, null) ?>
+                </a>
+            </div>
+            <div class="col-lg-6 col-12 product-description-item__card <?= ($index + 1) % 2 === 0 ? 'order-1 offset-lg-0 offset-0' : 'order-2 offset-lg-6 offset-0' ?>">
+                <div>
+                    <?= get_field('product_description') ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>
