@@ -379,9 +379,9 @@ function get_projects($cat_id)
             <script>
                 const oknaProjects = new Swiper('.okna-projects__swiper', {
                     pagination: {
-                        el: '.swiper-pagination',
-                    },
-                });
+                        el: '.swiper-pagination'
+                    }
+                })
             </script>
         </section>
     <?php endif;
@@ -516,7 +516,8 @@ function getPopularProducts()
     $args = array(
         'limit' => 2,
         'page' => 1,
-        'status' => 'publish'
+        'status' => 'publish',
+        'tag' => ['popular']
     );
     $products = wc_get_products($args);
     ob_start();
@@ -785,9 +786,9 @@ function get_trust()
                 spaceBetween: 30,
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
+                    prevEl: '.swiper-button-prev'
+                }
+            })
         </script>
     </section>
     <?php
