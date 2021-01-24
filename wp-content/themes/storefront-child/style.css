@@ -3,7 +3,7 @@ Theme Name:   	Richbee
 Author:       	Richbee
 Template:     	storefront
 Description:  	Дочерняя тема для storefront
-Version:      	1.0.10
+Version:      	1.0.11
 Theme URI:    https://richbee.ru/
 Author URI:   https://richbee.ru/
 
@@ -2415,6 +2415,14 @@ and (max-width: 576px) {
         margin-bottom: 50px;
     }
 
+    .okna-popular .container {
+        padding-bottom: 0;
+    }
+
+    .okna-process .container {
+        padding-top: 20px;
+    }
+
     .okna-about-map__container, .okna-about .okna-about-map .okna-about-map__container {
         width: 100%;
         padding: 0;
@@ -2430,7 +2438,7 @@ and (max-width: 576px) {
         text-align: center;
     }
 
-    .project .project__swiper a img{
+    .project .project__swiper a img {
         height: auto;
     }
 
@@ -2438,7 +2446,7 @@ and (max-width: 576px) {
         margin-bottom: 30px;
     }
 
-    .our-projects .container{
+    .our-projects .container {
         padding-bottom: 30px;
     }
 
