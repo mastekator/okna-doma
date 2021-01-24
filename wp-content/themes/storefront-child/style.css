@@ -3,7 +3,7 @@ Theme Name:   	Richbee
 Author:       	Richbee
 Template:     	storefront
 Description:  	Дочерняя тема для storefront
-Version:      	1.0.9
+Version:      	1.0.10
 Theme URI:    https://richbee.ru/
 Author URI:   https://richbee.ru/
 
@@ -696,8 +696,8 @@ footer.site-footer {
 
 .footer-contacts a {
     font-weight: 600;
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 1.5625rem;
+    line-height: 1.875rem;
     color: #000000 !important;
     display: table;
     margin-bottom: 10px;
@@ -998,8 +998,8 @@ table:not( .has-background ) tbody td {
 
 .header-wrapper .header-wrapper__title {
     font-weight: normal;
-    font-size: 60px;
-    line-height: 73px;
+    font-size: 3.75rem;
+    line-height: 4.5rem;
     color: #FFFFFF;
     margin-bottom: 105px;
 }
@@ -1027,8 +1027,8 @@ html .header-wrapper .btn-okna-primary {
 
 .header-wrapper_mini .header-wrapper__title {
     font-weight: normal;
-    font-size: 40px;
-    line-height: 47px;
+    font-size: 2.5rem;
+    line-height: 2.875rem;
     color: #FFFFFF;
     margin-bottom: 35px;
 }
@@ -1077,7 +1077,7 @@ html .okna-card .btn.btn-okna-primary {
 
 .product .product__description, .product .product__description p {
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 22px;
     color: #000000;
 }
@@ -1149,8 +1149,8 @@ html .btn.btn-okna-primary {
 
 .catalog-title {
     font-weight: normal;
-    font-size: 42px;
-    line-height: 42px;
+    font-size: 2.625rem;
+    line-height: 2.625rem;
     margin-top: 40px;
     color: #000000;
     margin-bottom: 10px;
@@ -1158,8 +1158,8 @@ html .btn.btn-okna-primary {
 
 .catalog-info {
     font-weight: normal;
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 1.0625rem;
+    line-height: 1.3125rem;
     color: #767676;
     margin-bottom: 30px;
 }
@@ -1202,7 +1202,7 @@ html .btn.btn-okna-primary {
     padding: 43px 30px 43px 115px;
     font-weight: normal;
     position: relative;
-    font-size: 25px;
+    font-size: 1.5625rem;
     line-height: 30px;
     color: #000000;
     width: 100%;
@@ -1264,8 +1264,8 @@ html a:hover {
 
 .okna-header {
     font-weight: normal;
-    font-size: 42px;
-    line-height: 51px;
+    font-size: 2.625rem;
+    line-height: 3.25rem;
     color: #000000;
     margin-bottom: 0;
     text-align: center;
@@ -1276,8 +1276,8 @@ html a:hover {
 }
 
 .card-product .card-product__title {
-    font-size: 38px;
-    line-height: 46px;
+    font-size: 2.375rem;
+    line-height: 2.875rem;
     color: #000000;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -1285,8 +1285,8 @@ html a:hover {
 
 .okna-text {
     font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
     color: #000000;
 }
 
@@ -1351,7 +1351,7 @@ html a:hover {
 
 .product .product__meta {
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 22px;
     color: #000000;
     margin-bottom: 0;
@@ -1375,7 +1375,7 @@ html a:hover {
 
 .product-description-item .product-description-item__card p {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 143.4%;
     color: #000000;
     margin: 0;
@@ -1388,7 +1388,7 @@ html a:hover {
 
 .product-description-item .product-description-item__card ul, .product-description-item .product-description-item__card ol {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 143.4%;
     color: #000000;
     margin-bottom: 0;
@@ -1455,8 +1455,8 @@ html a:hover {
 
 .card-advantage .card-advantage__title {
     font-weight: normal;
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 1.375rem;
+    line-height: 1.875rem;
     color: #000000;
     margin-bottom: 8px;
 }
@@ -1489,8 +1489,8 @@ html a:hover {
 
 .card-service .card-service__title {
     font-weight: normal;
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
     color: #000000;
     margin-bottom: 25px;
 }
@@ -1583,8 +1583,8 @@ img {
 
 .our-projects .our-projects-item__title {
     position: absolute;
-    font-size: 25px;
-    line-height: 23px;
+    font-size: 1.5625rem;
+    line-height: 1.5625rem;
     text-align: center;
     text-transform: uppercase;
     color: #FFF;
@@ -1607,8 +1607,8 @@ img {
 
 .card-project .card-project__title {
     font-weight: normal;
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
     color: #000000;
     margin-bottom: 30px;
 }
@@ -1631,8 +1631,8 @@ img {
 
 .card-project .card-project__list > li {
     font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
     color: #000000;
     margin-bottom: 20px;
     list-style: none;
@@ -1673,8 +1673,8 @@ img {
 
 .project .project__description, .project .project__description p {
     font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
     color: #000000;
 }
 
@@ -1689,8 +1689,8 @@ img {
 
 .project .project__list > li {
     font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
     color: #000000;
     margin-bottom: 8px;
     list-style: none;
@@ -1755,8 +1755,8 @@ img {
 }
 
 .card-trust .card-trust__title {
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 1.5625rem;
+    line-height: 1.875rem;
     color: #000000;
     margin-bottom: 25px;
 }
@@ -1777,8 +1777,8 @@ img {
 
 .pre-footer .pre-footer__title {
     font-weight: normal;
-    font-size: 32px;
-    line-height: 39px;
+    font-size: 2rem;
+    line-height: 2.5rem;
     color: #000000;
     margin-bottom: 50px;
 }
@@ -1946,15 +1946,15 @@ img {
 }
 
 .okna-modal .modal-title {
-    font-size: 36px;
-    line-height: 44px;
+    font-size: 2.25rem;
+    line-height: 2.75rem;
     color: #000000;
     margin-bottom: 40px;
 }
 
 .okna-modal .okna-modal__subtitle {
-    font-size: 25px;
-    line-height: 23px;
+    font-size: 1.5625rem;
+    line-height: 1.5625rem;
     color: #000000;
     margin-bottom: 10px;
 }
@@ -1976,8 +1976,8 @@ img {
 }
 
 .okna-modal .okna-modal__text {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     color: #000000;
     margin-bottom: 70px;
 }
@@ -2030,8 +2030,8 @@ textarea, .input-text, .okna-input {
 }
 
 .okna-input::placeholder {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     color: #959595;
 }
 
@@ -2089,8 +2089,8 @@ textarea, .input-text, .okna-input {
 .okna-process-card .okna-process-card__title {
     display: flex;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
     color: #000000;
     align-items: center;
     margin-bottom: 16px;
@@ -2120,8 +2120,8 @@ textarea, .input-text, .okna-input {
 }
 
 .okna-colors-card_info .okna-colors-card__header {
-    font-size: 26px;
-    line-height: 30px;
+    font-size: 1.625rem;
+    line-height: 1.875rem;
     margin-bottom: 20px;
     text-align: left;
 }
@@ -2241,8 +2241,8 @@ html .okna-about {
 }
 
 .okna-about-card .okna-about-card__title {
-    font-size: 24px;
-    line-height: 21px;
+    font-size: 1.5rem;
+    line-height: 1.375rem;
     color: #000000;
     margin-bottom: 18px;
 }
@@ -2265,8 +2265,8 @@ html .okna-about {
 }
 
 .okna-about-card .okna-about-card__link {
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 1.0625rem;
+    line-height: 1.375rem;
     color: #000000;
     margin-bottom: 9px;
     display: table;
@@ -2336,6 +2336,270 @@ and (max-width: 768px) {
 
 @media screen
 and (max-width: 576px) {
+    .site-header__phone {
+        width: 100%;
+        text-align: right;
+    }
+
+    .header-wrapper .header-wrapper__container {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .header-wrapper .header-wrapper__title {
+        margin-bottom: 55px;
+    }
+
+    html .header-wrapper .btn-okna-primary {
+        margin-bottom: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .okna-process__container {
+        flex-direction: column;
+    }
+
+    .okna-process__left .okna-process-card:first-of-type {
+        margin-top: 0;
+    }
+
+    .okna-process__left .okna-process-card {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .okna-process__right .okna-process-card:first-of-type {
+        margin-top: 30px;
+    }
+
+    .okna-process-card {
+        max-width: 100%;
+    }
+
+    .header-wrapper .header-wrapper__small {
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .okna-process__right .okna-process-card {
+        margin-left: 0;
+        margin-bottom: 30px;
+    }
+
+    .okna-process .container {
+        padding-bottom: 50px;
+    }
+
+    .card-advantage {
+        margin-bottom: 30px;
+    }
+
+    .okna-advantage .col-lg-4:last-of-type .card-advantage {
+        margin-bottom: 0;
+    }
+
+    .okna-advantage .okna-advantage__header {
+        margin-bottom: 50px;
+    }
+
+    .okna-advantage .container, .okna-projects .container, .okna-colors .container,
+    footer.site-footer, .breadcrumb .container {
+        padding-bottom: 50px;
+        padding-top: 50px;
+    }
+
+    .okna-process .okna-process__header, .okna-projects .okna-projects__header,
+    .product-description .product-description__header, .okna-popular .okna-popular__header {
+        margin-bottom: 50px;
+    }
+
+    .okna-about-map__container, .okna-about .okna-about-map .okna-about-map__container {
+        width: 100%;
+        padding: 0;
+        position: unset;
+    }
+
+    .okna-about .okna-about-map {
+        position: relative;
+        padding: 0;
+    }
+
+    .our-projects .our-projects__header {
+        text-align: center;
+    }
+
+    .project .project__swiper a img{
+        height: auto;
+    }
+
+    .project .project__image {
+        margin-bottom: 30px;
+    }
+
+    .our-projects .container{
+        padding-bottom: 30px;
+    }
+
+    .okna-about .okna-about__header {
+        text-align: center;
+    }
+
+    .okna-about-card {
+        margin-bottom: 30px;
+    }
+
+    .card-project {
+        padding: 25px;
+    }
+
+    .product-description {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    .product-description-item {
+        margin-bottom: 0;
+    }
+
+    .product-description-item .product-description-item__card {
+        position: unset;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .site-info__descr {
+        max-width: 100%;
+    }
+
+    .card-project .card-project__img {
+        max-height: 250px;
+    }
+
+    .catalog-title {
+        font-size: 2.325rem;
+        margin-top: 30px;
+    }
+
+    .catalog-filter > div label {
+        background-image: none !important;
+        padding: 20px;
+        font-size: 1.2625rem;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    .product .product__order {
+        margin-bottom: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .product .product__image {
+        margin-bottom: 30px;
+    }
+
+    .catalog-filter > div {
+        max-width: 50%;
+    }
+
+    .card-project .card-project__title, .card-project .card-project__info {
+        margin-bottom: 15px;
+    }
+
+    .footer-menu .menu li a {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-contacts {
+        padding: 0 15px;
+        margin-top: 15px;
+    }
+
+    .site-footer__body {
+        padding-bottom: 30px;
+    }
+
+    .after-footer {
+        flex-direction: column;
+    }
+
+    .card-product .card-product__title {
+        font-size: 2rem;
+    }
+
+    .mastekator {
+        margin-top: 15px;
+    }
+
+    .pre-footer-card {
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .pre-footer-card .pre-footer-card__body {
+        padding-left: 0;
+    }
+
+    .pre-footer-card > img {
+        display: none;
+    }
+
+    .pre-footer .pre-footer__title {
+        text-align: center;
+    }
+
+    .okna-colors-card {
+        padding: 0 15px;
+        background: transparent;
+    }
+
+    .pre-footer-body {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .okna-colors .okna-colors__header {
+        margin-bottom: 50px;
+    }
+
+    .okna-colors .okna-colors-card_info {
+        position: unset;
+        margin-top: 30px;
+    }
+
+    .okna-colors-card > a {
+        display: block;
+    }
+
+    .okna-colors-card img {
+        background: #FFFFFF;
+        border-radius: 6px;
+        padding: 15px;
+    }
+
+    .pre-footer-phone {
+        display: none;
+    }
+
+    html .okna-projects .btn.btn-okna-primary {
+        margin-bottom: 30px;
+    }
+
+    .okna-header {
+        font-size: 2.3rem;
+    }
+
+    .okna-process .okna-process__center {
+        display: none;
+    }
+
+    .okna-process-card .okna-process-card__text {
+        font-size: 1rem;
+    }
 
     .woocommerce-shipping-methods .pure-material-radio > span::after {
         top: 3px;
@@ -2349,4 +2613,49 @@ and (max-width: 576px) {
         margin-left: 0;
     }
 
+}
+
+/*--------------------------------------------------------------
+## Notebook
+--------------------------------------------------------------*/
+@media only screen and (max-width: 1280px) {
+    html {
+        font-size: 92%;
+    }
+}
+
+/*--------------------------------------------------------------
+## Netbook
+--------------------------------------------------------------*/
+@media only screen and (max-width: 1024px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+/*--------------------------------------------------------------
+## iPad
+--------------------------------------------------------------*/
+@media only screen and (max-width: 991px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+/*--------------------------------------------------------------
+## iPad
+--------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+/*--------------------------------------------------------------
+## iPad
+--------------------------------------------------------------*/
+@media only screen and (max-width: 480px) {
+    html {
+        font-size: 75%;
+    }
 }
