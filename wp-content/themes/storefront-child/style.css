@@ -2383,6 +2383,33 @@ and (max-width: 576px) {
         font-size: 13px;
     }
 
+    .okna-modal .modal-body {
+        padding: 25px;
+    }
+
+    .okna-modal .okna-input__form input {
+        max-width: 100%;
+    }
+
+    html .okna-modal .btn.btn-okna-primary {
+        max-width: 100%;
+    }
+
+    .okna-modal .modal-title {
+        font-size: 1.5rem;
+        line-height: 2.75rem;
+        color: #000000;
+        margin-bottom: 25px;
+    }
+
+    .okna-modal form {
+        margin-bottom: 0;
+    }
+
+    .okna-modal .okna-modal__text {
+        margin-bottom: 40px;
+    }
+
     .okna-process__right .okna-process-card {
         margin-left: 0;
         margin-bottom: 30px;
