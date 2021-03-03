@@ -38,7 +38,7 @@ $index = 0;
 ?>
 
 <div class="product-description col-12">
-    <h2 class="okna-header product-description__header">Описание</h2>
+    <p class="okna-header product-description__header">Описание</p>
     <?php foreach ($gallery as $key => $image_obj):
         $imageGallery = wp_get_attachment_image($image_obj['image_id'], 'full');
         $image_url = wp_get_attachment_image_url($image_obj['image_id'], 'full'); ?>

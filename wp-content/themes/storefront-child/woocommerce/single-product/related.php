@@ -27,7 +27,7 @@ if ($related_products) : ?>
 
         if ($heading) :
             ?>
-            <h2 class="okna-header okna-popular__header"><?php echo esc_html($heading); ?></h2>
+            <p class="okna-header okna-popular__header"><?php echo esc_html($heading); ?></p>
         <?php endif; ?>
 
         <?php woocommerce_product_loop_start(); ?>

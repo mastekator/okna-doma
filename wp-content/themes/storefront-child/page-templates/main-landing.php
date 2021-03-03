@@ -14,9 +14,9 @@ Template Post Type: post, page, product
 
 <section class="okna-process">
     <div class="container">
-        <h2 class="okna-header okna-process__header">
+        <p class="okna-header okna-process__header">
             Процесс производства
-        </h2>
+        </p>
 
         <div class="okna-process__container">
             <div class="okna-process__left">

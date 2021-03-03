@@ -15,22 +15,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-    <meta name="yandex-verification" content="828589cb561ad0fc" />
+    <meta name="yandex-verification" content="828589cb561ad0fc"/>
     <?php wp_head(); ?>
     <link rel="stylesheet" href="/wp-content/themes/storefront-child/inc/assets/css/swiper.min.css">
     <!— Yandex.Metrika counter —>
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            }
+            m[i].l = 1 * new Date()
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(
+                k, a)
+        })
+        (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
-        ym(70792504, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true
-        });
+        ym(70792504, 'init', {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        })
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/70792504" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/70792504" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
     <!— /Yandex.Metrika counter —>
 </head>
 
@@ -109,10 +117,18 @@
         </header>
 
         <div class="container header-wrapper__container">
-            <h1 class="header-wrapper__title">
-                <?= get_field('main_text', 20)
-                    ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
-            </h1>
+            <?php if (!is_front_page()): ?>
+                <p class="header-wrapper__title">
+                    <?= get_field('main_text', 20)
+                        ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
+                </p>
+            <?php else: ?>
+                <h1 class="header-wrapper__title">
+                    <?= get_field('main_text', 20)
+                        ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
+                </h1>
+            <?php endif; ?>
+
             <button class="btn btn-okna-primary inc-reaction" data-title="Оформите заявку на замеры" data-toggle="modal"
                     data-target="#orderModal">
                 Оставить заявку

@@ -331,9 +331,9 @@ function get_projects($cat_id)
     if ($projects): ?>
         <section class="okna-projects">
             <div class="container">
-                <h2 class="okna-header okna-projects__header">
+                <p class="okna-header okna-projects__header">
                     Наши проекты
-                </h2>
+                </p>
 
                 <div class="swiper-container okna-projects__swiper">
                     <div class="swiper-wrapper">
@@ -483,9 +483,9 @@ function get_advantages($page_id = false)
     if ($advantages): ?>
         <section class="okna-advantage">
             <div class="container">
-                <h2 class="okna-header okna-advantage__header">
+                <p class="okna-header okna-advantage__header">
                     Наши преимущества
-                </h2>
+                </p>
 
                 <div class="row">
                     <?php foreach ($advantages as $image_obj): ?>
@@ -524,8 +524,11 @@ function getPopularProducts()
     if ($products) : ?>
         <section class="okna-popular">
             <div class="container">
-                <h2 class="okna-header okna-popular__header">
-                    Популярные товары
+                <h1 class="okna-header okna-popular__header mb-2">
+                    Алюминиевые окна и двери
+                </h1>
+                <h2 class="okna-text text-center">
+                    Оконные профили от крупнейших производителей в России и за рубежом
                 </h2>
                 <div class="row">
                     <?php foreach ($products as $product):
@@ -697,7 +700,7 @@ function get_colors($image_id)
     ?>
     <section class="okna-colors">
         <div class="container">
-            <h2 class="okna-header okna-colors__header">Разнообразие цвета</h2>
+            <p class="okna-header okna-colors__header">Разнообразие цвета</p>
 
             <div class="row position-relative">
                 <div class="col-lg-8 col-12 okna-colors-card">
@@ -707,8 +710,9 @@ function get_colors($image_id)
                 </div>
                 <div class="col-lg-5 col-12 okna-colors-card_info">
                     <div>
-                        <h3 class="okna-header okna-colors-card__header" style="font-size: 24px">Таблица цветов по шкале
-                            RAL</h3>
+                        <h3 class="okna-header okna-colors-card__header" style="font-size: 24px">
+                            Таблица цветов по шкале RAL
+                        </h3>
                         <p class="okna-text">Алюминиевые конструкции возможно покрасить в любой цвет по международной
                             шкале RAL, покрытие покраски может быть глянцевой, матовой либо муар. Также возможна
                             покраска под структуру дерева.</p>
