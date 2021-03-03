@@ -117,17 +117,9 @@
         </header>
 
         <div class="container header-wrapper__container">
-            <?php if (!is_front_page()): ?>
                 <p class="header-wrapper__title">
-                    <?= get_field('main_text', 20)
-                        ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
+                    <?= get_field('main_text', 20) ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
                 </p>
-            <?php else: ?>
-                <h1 class="header-wrapper__title">
-                    <?= get_field('main_text', 20)
-                        ?: 'Замеры на <strong>следующий день*</strong> после заявки' ?>
-                </h1>
-            <?php endif; ?>
 
             <button class="btn btn-okna-primary inc-reaction" data-title="Оформите заявку на замеры" data-toggle="modal"
                     data-target="#orderModal">
