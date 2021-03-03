@@ -527,7 +527,7 @@ function getPopularProducts()
                 <h1 class="okna-header okna-popular__header mb-2">
                     Алюминиевые окна и двери
                 </h1>
-                <h2 class="okna-text text-center">
+                <h2 class="okna-text text-center mb-5">
                     Оконные профили от крупнейших производителей в России и за рубежом
                 </h2>
                 <div class="row">
