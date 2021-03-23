@@ -3,7 +3,7 @@ Theme Name:   	Richbee
 Author:       	Richbee
 Template:     	storefront
 Description:  	Дочерняя тема для storefront
-Version:      	1.0.13
+Version:      	1.0.14
 Theme URI:    https://richbee.ru/
 Author URI:   https://richbee.ru/
 
@@ -2293,6 +2293,7 @@ html .okna-about {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.33);
     border-radius: 6px;
     overflow: hidden;
+    height: 100%;
 }
 
 .post-card:hover {
@@ -2364,6 +2365,13 @@ html .okna-about {
     width: 100%;
     height: 450px;
     object-fit: cover;
+}
+
+.wp-caption .wp-caption-text {
+    font-style: italic;
+    text-align: center;
+    border-bottom: 0;
+    padding: 1em 0;
 }
 
 
