@@ -16,6 +16,7 @@
 
 <?php
 $phone = get_field('phone', 14);
+$second_phone = get_field('second_phone', 14);
 $email = get_field('email', 14);
 $fio_manager = get_field('fio_manager', 14);
 $photo_manager = get_field('photo_manager', 14);
@@ -196,6 +197,9 @@ $photo_manager = get_field('photo_manager', 14);
                         <p>Наши контакты</p>
                         <?php if ($phone): ?>
                             <a href="tel:<?= $phone ?>"><?= $phone ?></a>
+                        <?php endif; ?>
+                        <?php if ($second_phone): ?>
+                            <a href="tel:<?= $second_phone ?>"><?= $second_phone ?></a>
                         <?php endif; ?>
                         <?php if ($email): ?>
                             <a href="mailto:<?= $email ?>"><?= $email ?></a>
